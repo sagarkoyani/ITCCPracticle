@@ -1,0 +1,28 @@
+PODS:
+  - Alamofire (5.4.1)
+  - DropDown (2.3.2)
+  - IQKeyboardManagerSwift (6.5.6)
+  - SkyFloatingLabelTextField (3.8.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 5.4)
+  - DropDown (= 2.3.2)
+  - IQKeyboardManagerSwift
+  - SkyFloatingLabelTextField (~> 3.0)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - DropDown
+    - IQKeyboardManagerSwift
+    - SkyFloatingLabelTextField
+
+SPEC CHECKSUMS:
+  Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
+  DropDown: 7f87abecc28f9b4edad810fe1211c5c018c257e5
+  IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
+  SkyFloatingLabelTextField: 5a338412114808e961fe2d14ea2c5452c8b6e4aa
+
+PODFILE CHECKSUM: d1b98d3fe0ce65ea6685ed84fdca52e094b48ba2
+
+COCOAPODS: 1.10.1

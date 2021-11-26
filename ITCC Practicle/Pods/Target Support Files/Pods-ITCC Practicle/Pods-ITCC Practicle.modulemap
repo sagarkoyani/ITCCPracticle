@@ -1,0 +1,6 @@
+framework module Pods_ITCC_Practicle {
+  umbrella header "Pods-ITCC Practicle-umbrella.h"
+
+  export *
+  module * { export * }
+}
