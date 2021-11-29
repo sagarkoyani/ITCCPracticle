@@ -19,13 +19,14 @@ class LoginVC: UIViewController {
     
     //MARK:- Class Variable
     
-    private var viewModel: LoginVCViewModel!
+    private var viewModel = LoginVCViewModel()
     
     
     //MARK:- Life Cycle Method
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpView() 
+        setUpView()
+        setupViewModelObserver()
         // Do any additional setup after loading the view.
     }
     
@@ -55,7 +56,14 @@ class LoginVC: UIViewController {
     //MARK:- Action Method
     
     @IBAction func onClickLogin(_ sender: Any) {
-        callLoginApi()
+        if txtEmail.text!.isEmpty {
+            self.view.makeToast(ALERTEMAIL)
+            return
+        }else if txtPassword.text!.isEmpty {
+            self.view.makeToast(ALERTPASS)
+            return
+        }
+        self.viewModel.apiLogin(email: txtEmail.text!, password: txtPassword.text!)
     }
     
     
@@ -74,7 +82,67 @@ class LoginVC: UIViewController {
         })
         
     }
-    
+    private func setupViewModelObserver() {
+        //Login Observer
+        self.viewModel.onLoginResponse.bind { (response) in
+            switch response!.result
+            {
+            case.success(let Json):
+                
+                let responseJSON = JSON(Json)
+                let message = responseJSON["message"].stringValue
+                let status = responseJSON["status"].boolValue
+                if status {
+                    AUTHORIZATION_TOKEN = responseJSON["token"].stringValue
+                    self.viewModel.apiGetProfile()
+                }else{
+                    self.view.makeToast(message)
+                }
+                
+            case.failure( _):
+                print("API Failure")
+                self.view.makeToast(ALERTMSG)
+                HIDE_CUSTOM_LOADER()
+            }
+        }
+        
+        //Get profile Api Observer
+        self.viewModel.onGetProfileResponse.bind { (response) in
+            switch response!.result
+            {
+            
+            case.success(let Json):
+                
+                let responseJSON = JSON(Json)
+                let message = responseJSON["message"].stringValue
+                let status = responseJSON["status"].boolValue
+                
+                if status {
+                    
+                    let userData = UserProfileDataModel(fromJson:JSON(responseJSON["item"].object))
+                    //Save to database
+                    self.view.makeToast(message)
+                    
+                    // Save User profile Data to database
+                    _ = DatabaseManager.getInstance().saveData(userData)
+                    
+                    //Retrive All User profile Data From database
+                    _ = DatabaseManager.getInstance().getAllUsers()
+                    
+                    self.navigateToHome(userDetail: userData)
+                    
+                }else{
+                    self.view.makeToast(message)
+                }
+                
+            case.failure( _):
+                HIDE_CUSTOM_LOADER()
+                self.view.makeToast(ALERTMSG)
+            }
+        }
+        
+        
+    }
     /**
      Configuration of UIControls
      */
@@ -90,92 +158,8 @@ class LoginVC: UIViewController {
         
     }
     
-    func callLoginApi(){
-        if txtEmail.text!.isEmpty {
-            self.view.makeToast(ALERTEMAIL)
-           return
-        }else if txtPassword.text!.isEmpty {
-            self.view.makeToast(ALERTPASS)
-            return
-         }
-        let body = ["email":txtEmail.text!,
-                    "password":txtPassword.text!,
-                    "platform":"iOS",
-                    "os_version":"iOS 14.3",
-                    "application_version":"V1",
-                    "model":"iPhone",
-                    "type":"Gmail",
-                    "uid":"xyz"]
-        
-        SHOW_CUSTOM_LOADER()
-        
-        AF.request(APILOGINURL, method:.post, parameters:  body as [String : AnyObject]).responseJSON { (response) in
-            
-            HIDE_CUSTOM_LOADER()
-            
-            switch response.result
-            {
-            case.success(let Json):
-                
-                
-                let dictJson = Json as! NSDictionary
-                let message = dictJson.value(forKey: "message") as! String
-                if (dictJson.value(forKey: "status") as! Bool == true){
-                    AUTHORIZATION_TOKEN = dictJson.value(forKey: "token") as! String
-                    self.callGetProfileApi()
-                }else{
-                    self.view.makeToast(message)
-                }
-                
-            case.failure( _):
-                print("API Failure")
-                HIDE_CUSTOM_LOADER()
-                
-            }
-        }
-    }
     
-    func callGetProfileApi(){
-        SHOW_CUSTOM_LOADER()
-        
-        var httpHeader:HTTPHeaders = HTTPHeaders()
-        httpHeader.add(name: "Authorization", value: "Bearer \(AUTHORIZATION_TOKEN)")
-        AF.request(APIGETPROFILEURL, method:.get, parameters:nil,headers:httpHeader).responseJSON { (response) in
-            
-            HIDE_CUSTOM_LOADER()
-            
-            switch response.result
-            {
-            case.success(let Json):
-                
-                let dictJson = Json as! NSDictionary
-                let message = dictJson.value(forKey: "message") as! String
-                if (dictJson.value(forKey: "status") as! Bool == true){
-                    
-                    if let temp_arr = dictJson.value(forKey: "item")
-                    {
-                        let userData = UserProfileDataModel(fromJson:JSON(temp_arr))
-                        //Save to database
-                        self.view.makeToast(message)
-                        
-                        // Save User profile Data to database
-                        _ = DatabaseManager.getInstance().saveData(userData)
-                        
-                        //Retrive All User profile Data From database
-                        _ = DatabaseManager.getInstance().getAllUsers()
-                        
-                        self.navigateToHome(userDetail: userData)
-                    }
-                }else{
-                    self.view.makeToast(message)
-                }
-                
-            case.failure( _):
-                HIDE_CUSTOM_LOADER()
-                self.view.makeToast("Please Try after sometime.")
-            }
-        }
-    }
+    
     
     func navigateToHome(userDetail:UserProfileDataModel){
         

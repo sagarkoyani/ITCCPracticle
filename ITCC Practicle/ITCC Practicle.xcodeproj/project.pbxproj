@@ -96,6 +96,11 @@
 		0480D6FF274F932B00F8BB83 /* UserDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0480D6FE274F932B00F8BB83 /* UserDetailVC.swift */; };
 		0480D702274F935100F8BB83 /* LoginVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0480D701274F935100F8BB83 /* LoginVCViewModel.swift */; };
 		0480D719274F98EA00F8BB83 /* SignUpVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0480D718274F98EA00F8BB83 /* SignUpVCViewModel.swift */; };
+		04E0BE5427549BEA00D7043D /* WebServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E0BE5327549BEA00D7043D /* WebServices.swift */; };
+		04E0BE5B2754A0CA00D7043D /* AIReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E0BE5A2754A0CA00D7043D /* AIReachabilityManager.swift */; };
+		04E0BE5E2754A0F000D7043D /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E0BE5D2754A0F000D7043D /* Reachability.swift */; };
+		04E0BE612754A1F800D7043D /* UtilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E0BE602754A1F800D7043D /* UtilityManager.swift */; };
+		04E0BE672754B5FE00D7043D /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E0BE662754B5FE00D7043D /* Bindable.swift */; };
 		FB8AAEC7B11B9D6AACFA20AB /* Pods_ITCC_Practicle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF5C8692DB851E9A706DADD8 /* Pods_ITCC_Practicle.framework */; };
 /* End PBXBuildFile section */
 
@@ -199,6 +204,11 @@
 		0480D6FE274F932B00F8BB83 /* UserDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailVC.swift; sourceTree = "<group>"; };
 		0480D701274F935100F8BB83 /* LoginVCViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVCViewModel.swift; sourceTree = "<group>"; };
 		0480D718274F98EA00F8BB83 /* SignUpVCViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVCViewModel.swift; sourceTree = "<group>"; };
+		04E0BE5327549BEA00D7043D /* WebServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebServices.swift; sourceTree = "<group>"; };
+		04E0BE5A2754A0CA00D7043D /* AIReachabilityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AIReachabilityManager.swift; sourceTree = "<group>"; };
+		04E0BE5D2754A0F000D7043D /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		04E0BE602754A1F800D7043D /* UtilityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityManager.swift; sourceTree = "<group>"; };
+		04E0BE662754B5FE00D7043D /* Bindable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
 		0612F4163363E45DFBF0BB6B /* Pods-ITCC Practicle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ITCC Practicle.debug.xcconfig"; path = "Target Support Files/Pods-ITCC Practicle/Pods-ITCC Practicle.debug.xcconfig"; sourceTree = "<group>"; };
 		EEB24BFE335F936EF7CCBD01 /* Pods-ITCC Practicle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ITCC Practicle.release.xcconfig"; path = "Target Support Files/Pods-ITCC Practicle/Pods-ITCC Practicle.release.xcconfig"; sourceTree = "<group>"; };
 		FF5C8692DB851E9A706DADD8 /* Pods_ITCC_Practicle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ITCC_Practicle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -258,6 +268,7 @@
 		044F0640274FCCF700DCE0F9 /* ThirdPartyLibrary */ = {
 			isa = PBXGroup;
 			children = (
+				04E0BE5D2754A0F000D7043D /* Reachability.swift */,
 				044F06B2274FED9200DCE0F9 /* FMDB */,
 				044F06A8274FE2D000DCE0F9 /* Toast.swift */,
 				044F0654274FD9E100DCE0F9 /* NVActivityIndicator */,
@@ -385,10 +396,13 @@
 		0480D69D274F8AF400F8BB83 /* AppUtility */ = {
 			isa = PBXGroup;
 			children = (
+				04E0BE592754A0CA00D7043D /* AIReachabilityManager */,
+				04E0BE5227549B9400D7043D /* WebService */,
 				044F06C8274FEFAA00DCE0F9 /* Database */,
 				0480D69E274F8AF400F8BB83 /* Other */,
 				0480D6AA274F8AF400F8BB83 /* FormatStyle */,
 				0480D6B0274F8AF400F8BB83 /* Extensions */,
+				04E0BE602754A1F800D7043D /* UtilityManager.swift */,
 			);
 			path = AppUtility;
 			sourceTree = "<group>";
@@ -458,6 +472,7 @@
 		0480D6EE274F8CB800F8BB83 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				04E0BE632754A3CC00D7043D /* Fonts */,
 				044F064A274FD7A300DCE0F9 /* ITCC Practicle-Bridging-Header.h */,
 				044F06CD274FF71500DCE0F9 /* Users.db */,
 				042E7F68274F6B5D00FBBB9E /* Assets.xcassets */,
@@ -478,6 +493,7 @@
 		0480D6F1274F91B700F8BB83 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				04E0BE652754B5FE00D7043D /* Bindable */,
 				044F063C274FCB9300DCE0F9 /* UserProfileDataModel */,
 			);
 			path = Models;
@@ -585,6 +601,37 @@
 				042E7F6A274F6B5D00FBBB9E /* LaunchScreen.storyboard */,
 			);
 			path = LaunchScreen;
+			sourceTree = "<group>";
+		};
+		04E0BE5227549B9400D7043D /* WebService */ = {
+			isa = PBXGroup;
+			children = (
+				04E0BE5327549BEA00D7043D /* WebServices.swift */,
+			);
+			path = WebService;
+			sourceTree = "<group>";
+		};
+		04E0BE592754A0CA00D7043D /* AIReachabilityManager */ = {
+			isa = PBXGroup;
+			children = (
+				04E0BE5A2754A0CA00D7043D /* AIReachabilityManager.swift */,
+			);
+			path = AIReachabilityManager;
+			sourceTree = "<group>";
+		};
+		04E0BE632754A3CC00D7043D /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		04E0BE652754B5FE00D7043D /* Bindable */ = {
+			isa = PBXGroup;
+			children = (
+				04E0BE662754B5FE00D7043D /* Bindable.swift */,
+			);
+			path = Bindable;
 			sourceTree = "<group>";
 		};
 		38B3F99F8B9DEA1DC875A7A5 /* Pods */ = {
@@ -725,6 +772,7 @@
 				044F0685274FD9E200DCE0F9 /* NVActivityIndicatorAnimationBallGridPulse.swift in Sources */,
 				044F064E274FD88900DCE0F9 /* AILoader.swift in Sources */,
 				0480D6D4274F8AF400F8BB83 /* Bundle+Extension.swift in Sources */,
+				04E0BE612754A1F800D7043D /* UtilityManager.swift in Sources */,
 				044F06C2274FEDA500DCE0F9 /* FMDatabase.m in Sources */,
 				044F069C274FD9E200DCE0F9 /* NVActivityIndicatorAnimationLineScale.swift in Sources */,
 				0480D6E1274F8AF400F8BB83 /* UIContol+Extension.swift in Sources */,
@@ -749,6 +797,7 @@
 				0480D6C6274F8AF400F8BB83 /* DateTimeFormater.swift in Sources */,
 				0480D6EC274F8C9A00F8BB83 /* AppLanguagesEnum.swift in Sources */,
 				0480D719274F98EA00F8BB83 /* SignUpVCViewModel.swift in Sources */,
+				04E0BE5427549BEA00D7043D /* WebServices.swift in Sources */,
 				0480D6CF274F8AF400F8BB83 /* FormatStyle.swift in Sources */,
 				044F069F274FD9E200DCE0F9 /* NVActivityIndicatorAnimationBallPulseSync.swift in Sources */,
 				0480D702274F935100F8BB83 /* LoginVCViewModel.swift in Sources */,
@@ -780,12 +829,14 @@
 				0480D6DD274F8AF400F8BB83 /* UIScrollView+Extension.swift in Sources */,
 				0480D6D8274F8AF400F8BB83 /* UIFont+Extension.swift in Sources */,
 				0480D6DB274F8AF400F8BB83 /* UIView+Extension.swift in Sources */,
+				04E0BE5E2754A0F000D7043D /* Reachability.swift in Sources */,
 				0480D6DC274F8AF400F8BB83 /* UIBarButtonItem+Extension.swift in Sources */,
 				044F068B274FD9E200DCE0F9 /* NVActivityIndicatorAnimationLineSpinFadeLoader.swift in Sources */,
 				044F0692274FD9E200DCE0F9 /* NVActivityIndicatorAnimationBallClipRotatePulse.swift in Sources */,
 				044F06A4274FD9E200DCE0F9 /* NVActivityIndicatorAnimationBallPulseRise.swift in Sources */,
 				0480D6C7274F8AF400F8BB83 /* ScreenSize.swift in Sources */,
 				044F0648274FD76B00DCE0F9 /* MBProgressHUD.m in Sources */,
+				04E0BE5B2754A0CA00D7043D /* AIReachabilityManager.swift in Sources */,
 				044F06C6274FEE4600DCE0F9 /* Util.swift in Sources */,
 				0480D6D9274F8AF400F8BB83 /* UIColor+Extension.swift in Sources */,
 				044F068E274FD9E200DCE0F9 /* NVActivityIndicatorAnimationBallZigZag.swift in Sources */,
@@ -795,6 +846,7 @@
 				044F068F274FD9E200DCE0F9 /* NVActivityIndicatorAnimationBallBeat.swift in Sources */,
 				044F06AC274FE7A300DCE0F9 /* UserDetailVCViewModel.swift in Sources */,
 				044F0686274FD9E200DCE0F9 /* NVActivityIndicatorAnimationBallClipRotate.swift in Sources */,
+				04E0BE672754B5FE00D7043D /* Bindable.swift in Sources */,
 				044F069D274FD9E200DCE0F9 /* NVActivityIndicatorAnimationBallScaleRippleMultiple.swift in Sources */,
 				044F0696274FD9E200DCE0F9 /* NVActivityIndicatorAnimationBlank.swift in Sources */,
 				044F0689274FD9E200DCE0F9 /* NVActivityIndicatorAnimationBallDoubleBounce.swift in Sources */,
